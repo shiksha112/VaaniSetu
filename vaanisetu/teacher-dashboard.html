@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teacher Dashboard · VaaniSetu</title>
+<meta name="description" content="VaaniSetu Teacher Workspace — plan lessons, teach in your language, and track your class." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/global.css" />
+<link rel="stylesheet" href="css/teacher-dashboard.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ===================== Sidebar ===================== -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+    <button class="sidebar-close" id="sidebarCloseBtn" aria-label="Close menu">
+      <i data-lucide="x" class="icon"></i>
+    </button>
+
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark"><i data-lucide="languages" class="icon"></i></div>
+      <div class="sidebar-brand-text">
+        <h1>VaaniSetu</h1>
+        <p>Language Bridge</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item is-active" data-target="#dashboardTop">
+        <i data-lucide="home" class="icon"></i> Dashboard
+      </button>
+      <button class="nav-item" data-target="#subjectsSection">
+        <i data-lucide="book-open" class="icon"></i> My Subjects
+      </button>
+      <button class="nav-item" data-action="notes">
+        <i data-lucide="notebook-pen" class="icon"></i> Teaching Notes
+      </button>
+      <button class="nav-item" data-target="#upcomingPanel">
+        <i data-lucide="calendar-days" class="icon"></i> Schedule
+      </button>
+      <button class="nav-item" data-action="baatcheet">
+        <i data-lucide="message-circle" class="icon"></i> Conversation
+      </button>
+      <button class="nav-item" data-action="settings">
+        <i data-lucide="settings" class="icon"></i> Settings
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="avatar">T</div>
+      <div class="sidebar-footer-text">
+        <p>Teacher</p>
+        <p>Teacher Mode</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== Main content ===================== -->
+  <main class="main" id="dashboardTop">
+
+    <!-- Header -->
+    <header class="dash-header">
+      <div>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+          <i data-lucide="menu" class="icon"></i>
+        </button>
+        <h2>Good Morning, Teacher 👋</h2>
+        <p class="greeting-sub">Here's what your teaching day looks like.</p>
+      </div>
+
+      <div class="header-actions">
+        <div class="notif-wrap">
+          <button class="icon-btn" id="notifBell" aria-label="Notifications" aria-haspopup="true">
+            <i data-lucide="bell" class="icon"></i>
+            <span class="notif-dot" id="notifDot"></span>
+          </button>
+          <div class="notif-dropdown" id="notifDropdown" role="menu">
+            <p class="notif-dropdown-title">Notifications</p>
+            <ul id="notifList"></ul>
+          </div>
+        </div>
+        <div class="header-avatar" aria-hidden="true">T</div>
+      </div>
+    </header>
+
+    <!-- Today's Lesson — primary card -->
+    <section class="today-card" id="todayLessonCard" aria-label="Today's lesson"></section>
+
+    <!-- Quick actions -->
+    <div class="quick-actions">
+      <button class="quick-action" id="qaAddSubject"><i data-lucide="plus-circle" class="icon"></i> Add Subject</button>
+      <button class="quick-action" id="qaAddLesson"><i data-lucide="calendar-plus" class="icon"></i> Add Lesson</button>
+      <button class="quick-action" id="qaAddNote"><i data-lucide="notebook-pen" class="icon"></i> Add Note</button>
+      <button class="quick-action quick-action-accent" id="qaStartConversation"><i data-lucide="mic" class="icon"></i> Start Conversation</button>
+    </div>
+
+    <!-- My Subjects -->
+    <section class="dash-section" id="subjectsSection">
+      <div class="section-heading">
+        <h3>My Subjects</h3>
+      </div>
+      <div class="subjects-grid" id="subjectsGrid"></div>
+    </section>
+
+    <!-- Recent Activity + Upcoming Lessons -->
+    <section class="dash-section two-col">
+      <div class="panel" id="activityPanel">
+        <div class="section-heading">
+          <h3>Recent Teaching Activity</h3>
+        </div>
+        <div id="activityList"></div>
+        <a class="view-history-link" href="#" id="viewHistoryLink">
+          View Teaching History <i data-lucide="arrow-right" class="icon" style="width:14px;height:14px;"></i>
+        </a>
+      </div>
+
+      <div class="panel" id="upcomingPanel">
+        <div class="section-heading">
+          <h3>Upcoming Lessons</h3>
+        </div>
+        <div id="upcomingList"></div>
+      </div>
+    </section>
+
+    <!-- Teaching Progress -->
+    <section class="dash-section">
+      <div class="section-heading">
+        <h3>Teaching Progress</h3>
+        <span class="section-link" style="color:var(--color-text-secondary); font-weight:500;">This Week</span>
+      </div>
+      <div class="panel progress-panel">
+        <div class="progress-stat">
+          <p>Lessons Completed</p>
+          <p id="statCompleted">0</p>
+        </div>
+        <div class="progress-stat">
+          <p>Lessons Planned</p>
+          <p id="statPlanned">0</p>
+        </div>
+        <div>
+          <p style="font-size:var(--fs-xs); color:var(--color-text-secondary); font-weight:600; margin-bottom:6px;">Completion Rate</p>
+          <div class="progress-ring-wrap">
+            <span class="progress-ring-num" id="statRate">0%</span>
+            <div class="progress-track" style="flex:1;">
+              <div class="progress-fill" id="progressRingFill" style="width:0%; background:var(--color-success);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===================== Notes side panel ===================== -->
+<div class="side-panel-overlay" id="notesPanelOverlay"></div>
+<aside class="side-panel" id="notesPanel" data-overlay="notesPanelOverlay" aria-label="Teaching notes">
+  <div class="side-panel-header">
+    <h3>Teaching Notes</h3>
+    <button class="modal-close" id="notesPanelCloseBtn" aria-label="Close panel"><i data-lucide="x" class="icon"></i></button>
+  </div>
+  <div class="side-panel-body">
+    <button class="btn btn-primary btn-block" id="notesPanelAddBtn" style="margin-bottom: var(--sp-4);">
+      <i data-lucide="plus" class="icon"></i> Add Note
+    </button>
+    <div id="notesList"></div>
+  </div>
+</aside>
+
+<!-- ===================== Add Subject Modal ===================== -->
+<div class="modal-overlay" id="addSubjectModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addSubjectTitle">
+    <div class="modal-header">
+      <h3 id="addSubjectTitle">Add Subject</h3>
+      <button class="modal-close" data-close-modal="addSubjectModal" aria-label="Close"><i data-lucide="x" class="icon"></i></button>
+    </div>
+    <form id="addSubjectForm">
+      <div class="modal-body">
+        <div class="field">
+          <label for="subjectName">Subject Name</label>
+          <input type="text" id="subjectName" placeholder="e.g. Mathematics" />
+          <p class="field-error"></p>
+        </div>
+        <div class="field">
+          <label for="subjectClass">Class</label>
+          <select id="subjectClass">
+            <option>Class 1</option>
+            <option>Class 2</option>
+            <option>Class 3</option>
+            <option>Class 4</option>
+            <option>Class 5</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="subjectTeachingLang">Teaching Language</label>
+            <select id="subjectTeachingLang">
+              <option>Hindi</option>
+              <option>English</option>
+              <option>Bengali</option>
+              <option>Tamil</option>
+              <option>Marathi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="subjectStudentLang">Student Language</label>
+            <select id="subjectStudentLang">
+              <option>Santhali</option>
+              <option>Gondi</option>
+              <option>Bhili</option>
+              <option>Mundari</option>
+              <option>Bodo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal="addSubjectModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Subject</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== Add Lesson Modal ===================== -->
+<div class="modal-overlay" id="addLessonModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addLessonTitle">
+    <div class="modal-header">
+      <h3 id="addLessonTitle">Add New Lesson</h3>
+      <button class="modal-close" data-close-modal="addLessonModal" aria-label="Close"><i data-lucide="x" class="icon"></i></button>
+    </div>
+    <form id="addLessonForm">
+      <div class="modal-body">
+        <div class="field">
+          <label for="lessonSubjectSelect">Subject</label>
+          <select id="lessonSubjectSelect"></select>
+          <p class="field-error"></p>
+        </div>
+        <div class="field">
+          <label for="lessonTitle">Lesson Title</label>
+          <input type="text" id="lessonTitle" placeholder="e.g. Parts of a Plant" />
+          <p class="field-error"></p>
+        </div>
+        <div class="field">
+          <label for="lessonClass">Class</label>
+          <select id="lessonClass">
+            <option>Class 1</option>
+            <option>Class 2</option>
+            <option>Class 3</option>
+            <option>Class 4</option>
+            <option>Class 5</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lessonDescription">Description</label>
+          <textarea id="lessonDescription" placeholder="What will this lesson cover?"></textarea>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lessonTeachingLang">Teaching Language</label>
+            <select id="lessonTeachingLang">
+              <option>Hindi</option>
+              <option>English</option>
+              <option>Bengali</option>
+              <option>Tamil</option>
+              <option>Marathi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="lessonStudentLang">Student Language</label>
+            <select id="lessonStudentLang">
+              <option>Santhali</option>
+              <option>Gondi</option>
+              <option>Bhili</option>
+              <option>Mundari</option>
+              <option>Bodo</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lessonDate">Date</label>
+            <input type="date" id="lessonDate" />
+            <p class="field-error"></p>
+          </div>
+          <div class="field">
+            <label for="lessonTime">Time</label>
+            <input type="time" id="lessonTime" />
+            <p class="field-error"></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lessonNotes">Teaching Notes</label>
+          <textarea id="lessonNotes" placeholder="Notes for yourself while teaching this lesson"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal="addLessonModal">Cancel</button>
+        <button type="button" class="btn btn-secondary" data-lesson-status="draft">Save Draft</button>
+        <button type="button" class="btn btn-primary" data-lesson-status="published">Publish Lesson</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== Add Note Modal ===================== -->
+<div class="modal-overlay" id="addNoteModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addNoteTitle">
+    <div class="modal-header">
+      <h3 id="addNoteTitle">Add Teaching Note</h3>
+      <button class="modal-close" data-close-modal="addNoteModal" aria-label="Close"><i data-lucide="x" class="icon"></i></button>
+    </div>
+    <form id="addNoteForm">
+      <div class="modal-body">
+        <div class="field">
+          <label for="noteSubjectSelect">Subject</label>
+          <select id="noteSubjectSelect"></select>
+        </div>
+        <div class="field">
+          <label for="noteTitle">Note Title</label>
+          <input type="text" id="noteTitle" placeholder="e.g. Explaining fractions with fruit" />
+          <p class="field-error"></p>
+        </div>
+        <div class="field">
+          <label for="noteContent">Note</label>
+          <textarea id="noteContent" placeholder="Write your teaching note here"></textarea>
+          <p class="field-error"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal="addNoteModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Note</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== Subject Detail Modal ===================== -->
+<div class="modal-overlay" id="subjectDetailModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="subjectDetailTitle">
+    <div class="modal-header">
+      <h3 id="subjectDetailTitle">Subject</h3>
+      <button class="modal-close" data-close-modal="subjectDetailModal" aria-label="Close"><i data-lucide="x" class="icon"></i></button>
+    </div>
+    <div class="modal-body" id="subjectDetailBody"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-close-modal="subjectDetailModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== Conversation Modal (simulated lesson session) ===================== -->
+<div class="modal-overlay" id="conversationModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="convoLessonTitle">
+    <div class="modal-header">
+      <h3>Conversation</h3>
+      <button class="modal-close" data-close-modal="conversationModal" aria-label="Close"><i data-lucide="x" class="icon"></i></button>
+    </div>
+    <div class="modal-body convo-body">
+      <div class="convo-pulse"><i data-lucide="mic" class="icon" style="width:26px;height:26px;"></i></div>
+      <div>
+        <h3 id="convoLessonTitle" style="font-size:var(--fs-lg); margin-bottom:2px;">Lesson</h3>
+        <p id="convoLessonMeta" style="color:var(--color-text-secondary); font-size:var(--fs-sm);"></p>
+      </div>
+      <div class="convo-lang-row" id="convoLangRow"></div>
+      <p style="color:var(--color-text-secondary); font-size:var(--fs-sm);">
+        Your lesson content is being translated live for your student. End the session once you've finished teaching.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" id="convoEndBtn">End Session</button>
+      <button type="button" class="btn btn-primary" id="convoCompleteBtn">
+        <i data-lucide="check" class="icon"></i> Complete Lesson
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="js/app.js"></script>
+<script src="js/teacher-dashboard.js"></script>
+</body>
+</html>

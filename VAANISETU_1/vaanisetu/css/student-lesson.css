@@ -1,0 +1,179 @@
+/* =========================================================
+   VaaniSetu — Lesson detail page styles
+   ========================================================= */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.breadcrumb a:hover { color: var(--color-primary-dark); }
+.breadcrumb .sep { color: var(--color-border); }
+.breadcrumb .current { color: var(--color-text); font-weight: 600; }
+
+.lesson-header {
+  padding: var(--space-6) var(--space-8);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.lesson-header-subject { font-size: 13px; font-weight: 600; color: var(--color-text-secondary); }
+.lesson-header-title { font-size: 23px; font-weight: 800; letter-spacing: -0.01em; margin: 4px 0 var(--space-3); }
+.lesson-header-meta { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+
+.reading-card {
+  padding: var(--space-8);
+}
+
+.reading-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.reading-card-head h2 { font-size: 15px; font-weight: 700; }
+
+.tts-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text);
+  flex-shrink: 0;
+}
+
+.tts-btn svg { width: 16px; height: 16px; }
+.tts-btn:hover { border-color: var(--color-primary); color: var(--color-primary-dark); }
+.tts-btn.is-playing { background: var(--color-primary-tint); border-color: transparent; color: var(--color-primary-dark); }
+.tts-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.reading-content {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--color-text);
+  max-width: 68ch;
+}
+
+.tts-unavailable {
+  margin-top: var(--space-3);
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tts-unavailable svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ---------- Bilingual toggle ---------- */
+
+.bilingual-toggle {
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.bilingual-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+}
+
+.bilingual-toggle-label svg { width: 16px; height: 16px; color: var(--color-primary); }
+
+.original-content-panel {
+  padding: 0 var(--space-6) var(--space-6);
+  display: none;
+}
+
+.original-content-panel.is-open { display: block; }
+
+.original-content-panel .divider {
+  border-top: 1px dashed var(--color-border);
+  margin-bottom: var(--space-5);
+}
+
+.original-content-panel h3 {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+
+.original-content-panel p {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--color-text);
+  max-width: 68ch;
+}
+
+/* ---------- Teacher's notes card ---------- */
+
+.notes-card { padding: var(--space-6) var(--space-8); }
+
+/* ---------- Completion ---------- */
+
+.complete-card {
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.complete-card p.prompt {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.complete-done {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.complete-done.is-visible { display: flex; }
+
+.complete-done-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--color-success-tint);
+  color: var(--color-success);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--space-1);
+}
+
+.complete-done-icon svg { width: 26px; height: 26px; }
+
+.complete-done h3 { font-size: 16px; font-weight: 700; }
+.complete-done p { font-size: 13.5px; color: var(--color-text-secondary); max-width: 360px; }
+
+.complete-prompt.is-hidden { display: none; }
+
+/* ---------- Student note (own words) ---------- */
+
+.student-note-card { padding: var(--space-6) var(--space-8); }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .lesson-header, .reading-card, .notes-card, .student-note-card { padding: var(--space-5); }
+  .lesson-header-title { font-size: 19px; }
+  .reading-card-head { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+}

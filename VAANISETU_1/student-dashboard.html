@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard — VaaniSetu</title>
+<link rel="stylesheet" href="vaanisetu/css/global.css">
+<link rel="stylesheet" href="vaanisetu/css/student-dashboard.css">
+</head>
+<body>
+
+<div class="sidebar-overlay" data-action="close-sidebar"></div>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">VS</div>
+      <span class="sidebar-brand-text">VaaniSetu</span>
+      <button class="hamburger" data-action="close-sidebar" style="margin-left:auto;" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <a href="#home" class="nav-link" data-view-link="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        Home
+      </a>
+      <a href="flashcards.html" class="nav-link" data-view-link="lessons">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>
+        FlashCards
+        <span class="nav-dot" id="lessonsNavDot" hidden></span>
+      </a>
+      <a href="#subjects" class="nav-link" data-view-link="subjects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+        Subjects
+      </a>
+      <a href="#notes" class="nav-link" data-view-link="notes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+        My Notes
+      </a>
+      <a href="#progress" class="nav-link" data-view-link="progress">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10M10 21V3M17 21v-7"/></svg>
+        Progress
+      </a>
+      <a href="../baatcheet.html" class="nav-link" data-view-link="baatcheet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Baatcheet
+      </a>
+      <a href="#settings" class="nav-link" data-view-link="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="avatar" id="sidebarAvatar">R</div>
+      <div>
+        <div class="sidebar-footer-name" id="sidebarName">Student</div>
+        <div class="sidebar-footer-meta" id="sidebarClass">Class 5</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="main-inner">
+
+      <div class="mobile-topbar">
+        <button class="hamburger" data-action="open-sidebar" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-mark" style="width:28px;height:28px;font-size:12px;">VS</div>
+          <span class="sidebar-brand-text" style="font-size:15px;">VaaniSetu</span>
+        </div>
+      </div>
+
+      <!-- ============ TOPBAR ============ -->
+      <header class="topbar">
+        <div class="topbar-greeting">
+          <h1 id="greetingText">Good morning 👋</h1>
+          <p>Ready to continue learning today?</p>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="dropdown-wrap">
+            <button class="icon-btn" data-action="toggle-notif" aria-label="Notifications" aria-haspopup="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="badge-dot" id="notifDot" hidden></span>
+            </button>
+            <div class="dropdown-panel" id="notifDropdown">
+              <h4>Notifications</h4>
+              <div class="notif-list" id="notifList"></div>
+            </div>
+          </div>
+
+          <div class="dropdown-wrap">
+            <button class="lang-pill" data-action="toggle-lang" aria-haspopup="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg>
+              <span id="langPillLabel">Santhali</span>
+            </button>
+            <div class="dropdown-panel" id="langDropdown">
+              <h4>Learning Language</h4>
+              <div id="langOptionsList"></div>
+            </div>
+          </div>
+
+          <div class="avatar" id="topbarAvatar">R</div>
+        </div>
+      </header>
+
+      <!-- ============ VIEW: HOME ============ -->
+      <section data-view="home" class="view">
+
+        <!-- Today's Lesson -->
+        <div id="featuredLessonSlot"></div>
+
+        <div class="dash-grid">
+          <div style="display:flex; flex-direction:column; gap: var(--space-8);">
+
+            <div>
+              <div class="section-head">
+                <h2>My Subjects</h2>
+                <a href="#subjects" class="see-all" data-view-link="subjects">See all</a>
+              </div>
+              <div class="subject-grid" id="subjectGridHome"></div>
+            </div>
+
+            <div>
+              <div class="section-head"><h2>Continue Learning</h2></div>
+              <div id="continueLearningSlot"></div>
+            </div>
+
+          </div>
+
+          <div>
+            <div class="section-head"><h2>Recent Activity</h2></div>
+            <div class="card">
+              <div class="activity-list" id="activityList" style="padding: var(--space-2) var(--space-5);"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ VIEW: MY LESSONS ============ -->
+      <section data-view="lessons" class="view" hidden>
+        <div class="section-head"><h2>My Lessons</h2></div>
+        <div class="filter-bar" id="lessonFilterBar">
+          <button class="filter-chip is-active" data-filter="all">All</button>
+          <button class="filter-chip" data-filter="new">New</button>
+          <button class="filter-chip" data-filter="in-progress">In Progress</button>
+          <button class="filter-chip" data-filter="completed">Completed</button>
+        </div>
+        <div class="lesson-list" id="lessonListFull"></div>
+      </section>
+
+      <!-- ============ VIEW: SUBJECTS ============ -->
+      <section data-view="subjects" class="view" hidden>
+        <div class="section-head"><h2>My Subjects</h2></div>
+        <div class="subject-grid" id="subjectGridFull"></div>
+      </section>
+
+      <!-- ============ VIEW: MY NOTES ============ -->
+      <section data-view="notes" class="view" hidden>
+        <div class="section-head"><h2>My Notes</h2></div>
+
+        <div style="display:flex; flex-direction:column; gap: var(--space-4); margin-bottom: var(--space-8);">
+          <p style="font-size:13.5px; color:var(--color-text-secondary);">Teacher's notes from your lessons, in your learning language.</p>
+          <div id="teacherNotesList" style="display:flex; flex-direction:column; gap: var(--space-4);"></div>
+        </div>
+
+        <div class="section-head"><h2>Written by me</h2></div>
+        <div class="card note-editor">
+          <label for="freeNoteInput" class="sr-only">Write a note</label>
+          <textarea id="freeNoteInput" class="note-input" placeholder="Write something you want to remember..."></textarea>
+          <div class="note-editor-actions">
+            <button class="btn btn-primary" id="saveFreeNoteBtn">Save Note</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ VIEW: PROGRESS ============ -->
+      <section data-view="progress" class="view" hidden>
+        <div class="section-head"><h2>Learning Progress</h2></div>
+
+        <div class="stat-grid" style="margin-bottom: var(--space-8);">
+          <div class="card stat-card">
+            <div class="stat-value" id="statCompleted">0</div>
+            <div class="stat-label">Lessons Completed</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" id="statInProgress">0</div>
+            <div class="stat-label">Lessons In Progress</div>
+          </div>
+          <div class="card stat-card">
+            <div class="stat-value" id="statAvailable">0</div>
+            <div class="stat-label">Lessons Available</div>
+          </div>
+        </div>
+
+        <div class="section-head"><h2>By Subject</h2></div>
+        <div class="card" style="padding: var(--space-2) var(--space-5);" id="subjectProgressList"></div>
+      </section>
+
+      <!-- ============ VIEW: SETTINGS ============ -->
+      <section data-view="settings" class="view" hidden>
+        <div class="section-head"><h2>Settings</h2></div>
+
+        <div class="card" style="margin-bottom: var(--space-6);">
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Learning Language</div>
+              <div class="settings-desc">Lesson content is translated into this language.</div>
+            </div>
+            <div class="lang-choice-grid" id="settingsLangChoices"></div>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Student Name</div>
+              <div class="settings-desc">Shown on your dashboard and profile.</div>
+            </div>
+            <div class="settings-label" id="settingsStudentName">Ramesh</div>
+          </div>
+          <div class="settings-row">
+            <div>
+              <div class="settings-label">Class</div>
+              <div class="settings-desc">Set by your teacher.</div>
+            </div>
+            <div class="settings-label" id="settingsStudentClass">Class 5</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<template id="tpl-lesson-row">
+  <div class="card lesson-row">
+    <div class="lesson-row-icon"></div>
+    <div class="lesson-row-body">
+      <div class="lesson-row-subject"></div>
+      <div class="lesson-row-title"></div>
+      <div class="lesson-row-meta"></div>
+    </div>
+    <div class="lesson-row-action"></div>
+  </div>
+</template>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="vaanisetu/js/translation.js"></script>
+<script src="vaanisetu/js/app.js"></script>
+<script src="vaanisetu/js/student-dashboard.js"></script>
+</body>
+</html>
