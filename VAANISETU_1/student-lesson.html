@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson — VaaniSetu</title>
+<link rel="stylesheet" href="vaanisetu/css/global.css">
+<link rel="stylesheet" href="vaanisetu/css/student-dashboard.css">
+<link rel="stylesheet" href="vaanisetu/css/student-lesson.css">
+</head>
+<body>
+
+<div class="sidebar-overlay" data-action="close-sidebar"></div>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR (same as dashboard) ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">VS</div>
+      <span class="sidebar-brand-text">VaaniSetu</span>
+      <button class="hamburger" data-action="close-sidebar" style="margin-left:auto;" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <a href="student-dashboard.html#home" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        Home
+      </a>
+      <a href="student-dashboard.html#lessons" class="nav-link is-active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H12v16h6.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>
+        My Lessons
+      </a>
+      <a href="student-dashboard.html#subjects" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+        Subjects
+      </a>
+      <a href="student-dashboard.html#notes" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+        My Notes
+      </a>
+      <a href="student-dashboard.html#progress" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10M10 21V3M17 21v-7"/></svg>
+        Progress
+      </a>
+      <a href="student-dashboard.html#settings" class="nav-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="avatar" id="sidebarAvatar">R</div>
+      <div>
+        <div class="sidebar-footer-name" id="sidebarName">Student</div>
+        <div class="sidebar-footer-meta" id="sidebarClass">Class 5</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="main-inner" id="lessonPageRoot">
+
+      <div class="mobile-topbar">
+        <button class="hamburger" data-action="open-sidebar" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div class="sidebar-brand">
+          <div class="sidebar-brand-mark" style="width:28px;height:28px;font-size:12px;">VS</div>
+          <span class="sidebar-brand-text" style="font-size:15px;">VaaniSetu</span>
+        </div>
+      </div>
+
+      <!-- populated by JS: breadcrumb + everything below -->
+      <div id="lessonBreadcrumb" class="breadcrumb"></div>
+
+      <div id="lessonNotFound" class="card empty-state" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5s.5-2 2.5-2 2.5 1 2.5 2-1 1.5-2 2.5-1 1.5-1 2M12 17h.01"/></svg>
+        <h3>Lesson not found</h3>
+        <p>This lesson may have been unpublished. Head back to your lessons.</p>
+        <a href="student-dashboard.html#lessons" class="btn btn-primary" style="margin-top: var(--space-4);">Back to My Lessons</a>
+      </div>
+
+      <div id="lessonContent" hidden style="display:flex; flex-direction:column; gap: var(--space-6);">
+
+        <div class="card lesson-header">
+          <div>
+            <div class="lesson-header-subject" id="lhSubject"></div>
+            <h1 class="lesson-header-title" id="lhTitle"></h1>
+            <div class="lesson-header-meta" id="lhMeta"></div>
+          </div>
+        </div>
+
+        <div class="card reading-card">
+          <div class="reading-card-head">
+            <h2>What You Will Learn</h2>
+            <button class="tts-btn" id="ttsMainBtn" data-tts-target="main">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span>Listen</span>
+            </button>
+          </div>
+          <p class="reading-content" id="mainReadingContent"></p>
+          <div class="tts-unavailable" id="ttsUnavailableMain" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            Audio for this language will be available soon.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="bilingual-toggle">
+            <div class="bilingual-toggle-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg>
+              <span id="bilingualLangLabel">Local Language: Santhali</span>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="toggleOriginalBtn">Show Hindi</button>
+          </div>
+          <div class="original-content-panel" id="originalContentPanel">
+            <div class="divider"></div>
+            <h3 id="originalContentLabel">Original Teacher Content — Hindi</h3>
+            <p id="originalContentText"></p>
+          </div>
+        </div>
+
+        <div class="card notes-card">
+          <div class="reading-card-head">
+            <h2>Teacher's Notes</h2>
+            <button class="tts-btn" id="ttsNotesBtn" data-tts-target="notes">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span>Listen</span>
+            </button>
+          </div>
+          <p class="reading-content" id="notesReadingContent"></p>
+          <div class="tts-unavailable" id="ttsUnavailableNotes" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            Audio for this language will be available soon.
+          </div>
+        </div>
+
+        <div class="card student-note-card">
+          <div class="section-head"><h2>My Notes</h2></div>
+          <label for="lessonNoteInput" class="sr-only">Write a note for this lesson</label>
+          <textarea id="lessonNoteInput" class="note-input" placeholder="Write something you want to remember..."></textarea>
+          <div class="note-editor-actions">
+            <button class="btn btn-primary" id="saveLessonNoteBtn">Save Note</button>
+          </div>
+        </div>
+
+        <div class="card complete-card">
+          <div id="completePrompt" class="complete-prompt">
+            <p class="prompt">Did you complete this lesson?</p>
+            <button class="btn btn-primary" id="markCompleteBtn">Mark as Complete</button>
+          </div>
+          <div class="complete-done" id="completeDone">
+            <div class="complete-done-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <h3>Lesson Completed</h3>
+            <p>Great! This lesson has been added to your learning progress.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="vaanisetu/js/translation.js"></script>
+<script src="vaanisetu/js/app.js"></script>
+<script src="vaanisetu/js/student-lesson.js"></script>
+</body>
+</html>
